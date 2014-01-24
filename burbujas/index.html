@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/estilo.css">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+	
+	<script type="text/javascript" src="js/solicitud.js"></script>
+	<script type="text/javascript">
+	//$.get("http://192.168.0.4:3000/api/datas/300?key=asdf",solicitud);	
+	//se colocan las referencias de color
+	var diccionario = {
+		"datas":{
+			"hombres" : {
+				"2006" : {
+					"1" : 607,
+					"2" : 450,
+					"3" : 573,
+					"4" : 802,
+					"5" : 1023
+				},
+				"2007" : {
+					"1" : 508,
+					"2" : 1058,
+					"3" : 203,
+					"4" : 889,
+					"5" : 1520
+				},
+				"2008" : {
+					"1" : 705,
+					"2" : 102,
+					"3" : 1585,
+					"4" : 1268,
+					"5" : 176
+				},
+				"2009" : {
+					"1" : 1025,
+					"2" : 3587,
+					"3" : 479,
+					"4" : 369,
+					"5" : 152
+				}
+			},
+			"mujeres" : {
+				"2006" : {
+					"1" : 502,
+					"2" : 468,
+					"3" : 852,
+					"4" : 367,
+					"5" : 3589
+				},
+				"2007" : {
+					"1" : 505,
+					"2" : 985,
+					"3" : 634,
+					"4" : 756,
+					"5" : 968
+				},
+				"2008" : {
+					"1" : 348,
+					"2" : 758,
+					"3" : 1987,
+					"4" : 1698,
+					"5" : 258
+				},
+				"2009" : {
+					"1" : 2586,
+					"2" : 1268,
+					"3" : 254,
+					"4" : 712,
+					"5" : 2145
+				}
+			}
+		}
+	};
+	
+	setTimeout(function(){
+		solicitud(diccionario);
+		
+	}, 1000); 
+	
+	</script>
+	<title>PRUEBA 3</title>
+</head>
+<body>
+	<div id="titulo"></div>
+	<svg class="lienzo"></svg>
+	<div id="referencia"></div>
+	
+</body>
+</html>	
