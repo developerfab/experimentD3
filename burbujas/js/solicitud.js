@@ -83,6 +83,7 @@ function solicitud(clave){
 		}
 	}
 	console.log('maximo: ',maximo);
+	var datos_y = genero.length;
 	//se grafican los datos
 	for(var n =0;n<contenedor_final.length;n++){
 		contenedor = contenedor_final[n];
@@ -91,19 +92,13 @@ function solicitud(clave){
 			for(j=0;j<cant_datos;j++){
 				pos_dato = j;
 				aux = contenedor[j][i][1];
-				carga(aux,asig_color(contenedor[j][i][0]),cant_datos,pos_dato,maximo);
+				carga(aux,asig_color(genero[n]),cant_datos,pos_dato,maximo, n, datos_y);
 			}
 		}
 	}
 	
 }
 
-function graficar(dato){
-
-	
-	circulo(90,90,"rojo",50);
-	circulo(140,90,"verde",50);
-}
 /** circulo
 * Esta funcion se encarga de pintar un circulo en las coordenadas
 * x:cx & y:cy, con el color especificado y asignado como clase, y radio r
@@ -146,48 +141,29 @@ function cargar_bar(lienzo,data,pos_dato,barWidth){
 * pos_dato: es la posicion del dato en la que se debe graficar
 * maximo: Es el mayor de todos los datos, su funcion es establecer la regla para determinar el rango
 */
-function carga(valor_dato,color, cant_datos,pos_dato,maximo){
+function carga(valor_dato,color, cant_datos,pos_dato,maximo,pos_y, datos_y){
 	var data = [valor_dato];
 	var y = d3.scale.linear()
 	    .range([height, 0]);
 	
    	var width = 960;
-    /*height = 500;
-	
-	var y = d3.scale.linear()
-	    .range([height, 0]);
-	//asignacion de la clase y del tamaño del lienzo
-	var lienzo = d3.select(".lienzo")
-	    .attr("width", width)
-	    .attr("height", height);
-*/
+    
 	//--------------------- GRAFICACION ---------------------------
 	//dominio de la grafica
 	y.domain([0, maximo]);
 
 	var barWidth = width / cant_datos;
-	
+	var barHeigth = height / datos_y;
+	console.log('dato: ',data, 'pos_dato: ', pos_dato, 'pos_y: ',pos_y);
 	//cargar_bar(lienzo,data,pos_dato,barWidth);
-	var cx = 30+ barWidth*(pos_dato) ,
-		cy = height-pos_dato,
-		color = color,
-		radio = valor_dato/100;
+	var cx = 30+ barWidth*(pos_dato),
+		radio = valor_dato/100,
+		cy = height-(barHeigth*pos_y),
+		color = color;
+		
 
 	circulo(cx,cy,color,radio);
-	/*
-	bar.append("rect")
-	    .attr("class", color)
-	    .attr("x", function(d) { return 30+ barWidth*(pos_dato +0.1); })
-	    .attr("y", function(d) { return y(d); })
-	    .attr("height", function(d) { return height-y(d); })
-	    .attr("width", barWidth*0.8);
-	 
-	bar.append("text")
-	    .attr("x", barWidth*pos_dato+30+barWidth/2)
-	    .attr("y", function(d) { return y(d) + 3; })
-	    .attr("dy", ".75em")
-	    .text(function(d) { return d; });
-	*/
+	
 	}
 /** ordenar
 * Esta funcion se encarga  de ordenar los datos mediante insercion antes de ser graficados
@@ -213,48 +189,11 @@ function ordenar(dato){
 function asig_color(anio){
 	var color_r= "negro";
 	switch(anio){
-		case '1' : 
+		case 'hombres' : 
 					color_r = 'rojo';
 					break;
-		case '2' : 
+		case 'mujeres' : 
 					color_r = 'azul';
-					break;
-		case '3' : 
-					color_r = 'verde';
-					break;
-		case '4' : 
-					color_r = 'amarillo';
-					break;
-		case '5' : 
-					color_r = 'negro';
-					break;			
-		case '2006': 
-					color_r = "rojo";
-					//$('#referencia').append("div").attr("class=",color_r);
-					break;
-		case '2007':
-					color_r = "azul";
-					//$('#referencia').append("div").attr("class=",color_r);
-					break;
-		case '2008':
-					color_r = "verde";
-					//$('#referencia').append("div").attr("class=",color_r);
-					break;
-		case '2009':
-					color_r = "amarillo";
-					//$('#referencia').append("div").attr("class=",color_r);
-					break;
-		case '2010':
-					color_r = "negro";
-					//$('#referencia').append("div").attr("class=",color_r);
-					break;
-		case '2011':
-					color_r = "morado";
-					//$('#referencia').append("div").attr("class=",color_r);
-					break;
-		case '2012':
-					color_r = "rosa";
-					//$('#referencia').append("div").attr("class=",color_r);
 					break;
 		default:
 					color_r="negro";
