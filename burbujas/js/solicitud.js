@@ -24,6 +24,7 @@ function aniovsDato(data){
 	var aux = null;
 	//contenedor: contenedor que contiene todos los datos convertidos para al final ser retornados
 	var contenedor = new Array();
+	//se insertan los datos en el arreglo y se descantan los que contienen las llaves 'empty' y ''
 	for(var i = 0;i<llaves.length;i++){
 		subllaves = Object.keys(data[llaves[i]]);
 		aux = new Array();
@@ -49,28 +50,32 @@ function aniovsDato(data){
 	
 	return contenedor;
 }
-/*
-function x(d) { return d.datas.hombres; }
-function y(d) { return d.datas.hombres; }
-function radius(d) { return 25; }
-function color(d) { return d; }
-function key(d) { return d; }
+/** solicitud
+* Esta funcion se encarga de recibir la peticion enviada por el usuario a través del dato
+* 'clave' el cual contiene el diccinario a procesar. Para este caso se hace uso del diccionario
+* de ejemplo del archivo html, por ello varias de las variables tienen nombres relacionados con este.
 */
 function solicitud(clave){
 
 	//valores del genero
 	var genero = Object.keys(clave.datas);
+	//contenedor que contendra todos los datos del diccionario contenidos en un array
 	var contenedor_final=new Array();
 	var aux = null;
+	var largo_subllave = null;
+	//maximo: valor del dato mas grande de todo el diccionario
+	var maximo=0;
+	//contenedor: subdivisiones del contenedor final, contiene los datos generados de cada genero
+	var contenedor = null;
+	//cant_datos: para este ejemplo, será el numero de datos de cada genero
+	var cant_datos = null;
+	//datos_y: cantidad de datos que se graficaran a lo largo del eje y
+	var datos_y = genero.length;
+	//se envian los datos para ser organizados y se asigna la respuesta al contenedor_final
 	for(var i =0;i<genero.length;i++){
 		aux = aniovsDato(clave.datas[genero[i]]);
 		contenedor_final.push(aux);
 	}
-	console.log('contenedor f:',contenedor_final);
-	var largo_subllave = null;
-	var maximo=0;
-	var contenedor = null;
-	var cant_datos = null;
 	//se calcula el valor maximo contenido en el arreglo
 	for(var i =0;i<contenedor_final.length;i++){
 		contenedor = contenedor_final[i];
@@ -82,8 +87,7 @@ function solicitud(clave){
 			}
 		}
 	}
-	console.log('maximo: ',maximo);
-	var datos_y = genero.length;
+
 	//se grafican los datos
 	for(var n =0;n<contenedor_final.length;n++){
 		contenedor = contenedor_final[n];
@@ -155,14 +159,12 @@ function carga(valor_dato,color, cant_datos,pos_dato,maximo,pos_y, datos_y){
 
 	var barWidth = width / cant_datos;
 	var barHeigth = height / datos_y;
-	console.log('dato: ',data, 'pos_dato: ', pos_dato, 'pos_y: ',pos_y);
 	//cargar_bar(lienzo,data,pos_dato,barWidth);
 	var cx = 30+ barWidth*(pos_dato),
 		radio = valor_dato/100,
 		cy = height-(barHeigth*pos_y),
 		color = color;
-		
-
+	//se llama la funcion que graficara el circulo
 	circulo(cx,cy,color,radio);
 	
 	}
@@ -170,7 +172,6 @@ function carga(valor_dato,color, cant_datos,pos_dato,maximo,pos_y, datos_y){
 * Esta funcion se encarga  de ordenar los datos mediante insercion antes de ser graficados
 */
 function ordenar(dato){
-	console.log('dato: ',dato)
 	var tam = dato.length;
 	var temp,temp2,j;
 	for(var i = 0;i<tam;i++){
@@ -198,7 +199,6 @@ function asig_color(anio){
 					break;
 		default:
 					color_r="negro";
-					//$('#referencia').append("div").attr("class=",color_r);
 					break;
 	}
 	return color_r;
