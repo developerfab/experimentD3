@@ -111,7 +111,8 @@ function circulo(cx,cy,color,radio){
 		.attr('cy',cy)
 		.attr('class',color)
 		.attr('cx', cx)
-		.attr('r',radio);
+		.attr('r',radio)
+		.attr('stroke','black');
 }
 
 /**cargar_bar
