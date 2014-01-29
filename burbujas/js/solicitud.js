@@ -1,13 +1,9 @@
 //atributos
-var y = d3.scale.linear()
-	    .range([height, 0]);
 
-var x = d3.scale.ordinal()
-	  	.rangeRoundBands([0, width], .1);
 //margenes:
 var margin = {top: 19.5, right: 19.5, bottom: 19.5, left: 39.5},
-    width = 960 - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    width = (screen.width*0.8)- margin.right,
+    height = (screen.height*0.7) - margin.top - margin.bottom;
 
 /** aniovsDato
 * Esta funcion se encarga de filtrar los datos de años como dato general, tupla[0] es el dato y 
@@ -159,7 +155,6 @@ function carga(valor_dato,color, cant_datos,pos_dato,maximo,pos_y, datos_y){
 
 	var barWidth = width / cant_datos;
 	var barHeigth = height / datos_y;
-	//cargar_bar(lienzo,data,pos_dato,barWidth);
 	var cx = 30+ barWidth*(pos_dato),
 		radio = valor_dato/100,
 		cy = height-(barHeigth*pos_y),
