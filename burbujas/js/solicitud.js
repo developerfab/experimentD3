@@ -1,10 +1,12 @@
 //atributos
 var margin , width , height ;
 //margenes:
-
+/** dimension
+* Esta funcion se encarga de revisar el tamaño del exporador y asignar el tamaño del lienzo de acuerdo
+* a sus dimensiones.
+*/
 function dimension(){
 	//se limpia el lienzo:
-	console.log('width',window.innerWidth);
 	$('.lienzo').empty();
 	margin = {top: 19.5, right: 19.5, bottom: 19.5, left: 39.5},
     width = (window.innerWidth*0.8)- margin.right,
