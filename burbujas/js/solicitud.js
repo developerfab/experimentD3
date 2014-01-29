@@ -165,9 +165,7 @@ function carga(valor_dato,color, cant_datos,pos_dato,maximo,pos_y, datos_y){
 	var barHeigth = height / datos_y;
 	var cx = 30+ barWidth*(pos_dato);
 	var radio = valor_dato/100;
-	console.log('jk', width, height);
 	if(width<250){
-		
 		radio = valor_dato/1000;
 	}
 	var cy = height-(barHeigth*pos_y),

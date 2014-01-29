@@ -110,7 +110,6 @@
 	}, 1000); 
 	//redimension de la ventana
 	$( window ).resize(function() {
-		console.log('redimensionado');
   		setTimeout(function(){
 		solicitud(diccionario);
 		
@@ -120,8 +119,22 @@
 	<title>PRUEBA 3</title>
 </head>
 <body>
-	<div id="titulo"></div>
-	<svg class="lienzo"></svg>
+	<div id="titulo">
+		<h1>Burbujas</h1>
+	</div>
+	<div id="grafica">
+		<svg class="lienzo"></svg>
+	</div>
+	
 	<div id="referencia"></div>
+	<div>
+		<p>
+			Burbujas es una grafica que se encarga de pintar figuras circulares en forma de barra con el fin de comparar
+			las direfentes proporciones que cada una de estas posee. Para graficar se hace uso de un diccionario de al menos
+			3 niveles de profundidad, como ejemplo de implementaci&#243;n se har&#225; uso del siguiente diccionario:
+		</p>
+		<script src="https://gist.github.com/fab48/8699453.js"></script>
+			
+	</div>
 </body>
 </html>	
