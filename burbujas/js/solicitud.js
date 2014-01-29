@@ -1,9 +1,16 @@
 //atributos
-
+var margin , width , height ;
 //margenes:
-var margin = {top: 19.5, right: 19.5, bottom: 19.5, left: 39.5},
-    width = (screen.width*0.8)- margin.right,
-    height = (screen.height*0.7) - margin.top - margin.bottom;
+
+function dimension(){
+	//se limpia el lienzo:
+	console.log('width',window.innerWidth);
+	$('.lienzo').empty();
+	margin = {top: 19.5, right: 19.5, bottom: 19.5, left: 39.5},
+    width = (window.innerWidth*0.8)- margin.right,
+    height = (window.innerHeight*0.7) - margin.top - margin.bottom;
+}
+
 
 /** aniovsDato
 * Esta funcion se encarga de filtrar los datos de años como dato general, tupla[0] es el dato y 
@@ -52,7 +59,8 @@ function aniovsDato(data){
 * de ejemplo del archivo html, por ello varias de las variables tienen nombres relacionados con este.
 */
 function solicitud(clave){
-
+	//tamaño del lienzo
+	dimension();
 	//valores del genero
 	var genero = Object.keys(clave.datas);
 	//contenedor que contendra todos los datos del diccionario contenidos en un array
@@ -146,18 +154,21 @@ function carga(valor_dato,color, cant_datos,pos_dato,maximo,pos_y, datos_y){
 	var data = [valor_dato];
 	var y = d3.scale.linear()
 	    .range([height, 0]);
-	
-   	var width = 960;
-    
+	    
 	//--------------------- GRAFICACION ---------------------------
 	//dominio de la grafica
 	y.domain([0, maximo]);
 
 	var barWidth = width / cant_datos;
 	var barHeigth = height / datos_y;
-	var cx = 30+ barWidth*(pos_dato),
-		radio = valor_dato/100,
-		cy = height-(barHeigth*pos_y),
+	var cx = 30+ barWidth*(pos_dato);
+	var radio = valor_dato/100;
+	console.log('jk', width, height);
+	if(width<250){
+		
+		radio = valor_dato/1000;
+	}
+	var cy = height-(barHeigth*pos_y),
 		color = color;
 	//se llama la funcion que graficara el circulo
 	circulo(cx,cy,color,radio);

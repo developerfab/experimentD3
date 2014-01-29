@@ -4,7 +4,7 @@
 	<link rel="stylesheet" type="text/css" href="css/estilo.css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
-	
+	<script type="text/javascript" src="http://code.jquery.com/jquery-git.js"></script>
 	<script type="text/javascript" src="js/solicitud.js"></script>
 	<script type="text/javascript">
 	//$.get("http://192.168.0.4:3000/api/datas/300?key=asdf",solicitud);	
@@ -108,7 +108,14 @@
 		solicitud(diccionario);
 		
 	}, 1000); 
-	
+	//redimension de la ventana
+	$( window ).resize(function() {
+		console.log('redimensionado');
+  		setTimeout(function(){
+		solicitud(diccionario);
+		
+		}, 1000); 
+	});
 	</script>
 	<title>PRUEBA 3</title>
 </head>
@@ -116,6 +123,5 @@
 	<div id="titulo"></div>
 	<svg class="lienzo"></svg>
 	<div id="referencia"></div>
-	
 </body>
 </html>	
