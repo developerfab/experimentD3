@@ -50,3 +50,11 @@ h1{
 #grafica{
 	text-align: center;
 }
+svg{
+	max-width: 100%;
+	height: auto;
+}
+circle{
+	max-width: auto;
+	height: auto;
+}
