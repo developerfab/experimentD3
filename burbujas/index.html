@@ -9,9 +9,6 @@
 	<script type="text/javascript" src="http://code.jquery.com/jquery-git.js"></script>
 	<script type="text/javascript" src="js/solicitud.js"></script>
 	<script type="text/javascript">
-	var ancho_actual = window.innerWidth;
-	var alto_actual = window.innerHeight;
-	var nuevo_ancho, nuevo_alto, porcentaje_cambio_ancho, porcentaje_cambio_alto, radio_actual;
 	//$.get("http://192.168.0.4:3000/api/datas/300?key=asdf",solicitud);
 	//se colocan las referencias de color
 	var diccionario = {
@@ -113,23 +110,24 @@
 		solicitud(diccionario);
 		
 	}, 1000); 
+	var ancho_actual = window.innerWidth;
+	var alto_actual = window.innerHeight;
+	var nuevo_ancho, nuevo_alto, porcentaje_cambio_ancho, porcentaje_cambio_alto, radio_actual,conjunto_circle;
+	
 	//redimension de la ventana
 	$( window ).resize(function() {
-  		/*setTimeout(function(){
-		solicitud(diccionario);
-		
-		}, 1000); */
+  		
 		nuevo_ancho = window.innerWidth;
 		nuevo_alto = window.innerHeight;
 		porcentaje_cambio_ancho = nuevo_ancho / ancho_actual;
 		porcentaje_cambio_alto = nuevo_alto / alto_actual;
-		radio_actual = $('circle').attr('r');
-		if(nuevo_ancho<ancho_actual){
-			$('circle').attr('r',radio_actual*porcentaje_cambio_ancho);
+		conjunto_circle = $('circle').select();
+		for(var i = 0; i<conjunto_circle.length;i++){
+			var circle_aux = $(conjunto_circle[i])
+			radio_actual = circle_aux.attr('r');
+			circle_aux.attr('r',radio_actual*porcentaje_cambio_ancho);
 		}
-		else{
-			$('circle').attr('r',radio_actual*(1+porcentaje_cambio_ancho));
-		}
+		
 		ancho_actual = nuevo_ancho;
 		alto_actual = nuevo_alto;
 	});
@@ -141,7 +139,7 @@
 		<div id="titulo">
 			<h1>Burbujas</h1>
 		</div>
-		<div id="grafica" class="row">
+		<div id="grafica" >
 			<svg class="lienzo"></svg>
 		</div>
 		

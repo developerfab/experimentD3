@@ -49,6 +49,7 @@ h1{
 }
 #grafica{
 	text-align: center;
+	width: 100%;
 }
 svg{
 	max-width: 100%;
