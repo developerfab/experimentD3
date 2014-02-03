@@ -3,7 +3,6 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="css/estilo.css">
-	<link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-git.js"></script>
@@ -110,27 +109,42 @@
 		solicitud(diccionario);
 		
 	}, 1000); 
-	var ancho_actual = window.innerWidth;
+	/*var ancho_actual = window.innerWidth;
 	var alto_actual = window.innerHeight;
 	var nuevo_ancho, nuevo_alto, porcentaje_cambio_ancho, porcentaje_cambio_alto, radio_actual,conjunto_circle;
-	
+	var circle_aux, cx_aux, cy_aux ;
 	//redimension de la ventana
 	$( window ).resize(function() {
   		
-		nuevo_ancho = window.innerWidth;
-		nuevo_alto = window.innerHeight;
+		//nuevo_ancho = window.innerWidth;
+		//nuevo_alto = window.innerHeight;
+		var lienzo_aux = $('.lienzo');
+		nuevo_ancho = lienzo_aux.attr('width');
+		nuevo_alto = lienzo_aux.attr('height');
 		porcentaje_cambio_ancho = nuevo_ancho / ancho_actual;
 		porcentaje_cambio_alto = nuevo_alto / alto_actual;
 		conjunto_circle = $('circle').select();
 		for(var i = 0; i<conjunto_circle.length;i++){
-			var circle_aux = $(conjunto_circle[i])
+			circle_aux = $(conjunto_circle[i]);
 			radio_actual = circle_aux.attr('r');
 			circle_aux.attr('r',radio_actual*porcentaje_cambio_ancho);
+			if(nuevo_ancho<ancho_actual){
+				cx_aux = circle_aux.attr('cx');
+				//console.log('cx_aux: ',cx_aux, 'po canbio', porcentaje_cambio_ancho);
+				cx_aux = cx_aux*(1 - porcentaje_cambio_ancho );
+				cy_aux =(circle_aux.attr('cy')*(1 - porcentaje_cambio_alto));
+				circle_aux.attr('cx',cx_aux);
+				if(cy_aux!=0){
+					circle_aux.attr('cy',cy_aux);
+				}
+			}
+			
+			
 		}
 		
 		ancho_actual = nuevo_ancho;
 		alto_actual = nuevo_alto;
-	});
+	});*/
 	</script>
 	<title>PRUEBA 3</title>
 </head>
@@ -140,7 +154,7 @@
 			<h1>Burbujas</h1>
 		</div>
 		<div id="grafica" >
-			<svg class="lienzo"></svg>
+			<svg class="lienzo" ></svg>
 		</div>
 		
 		<div id="referencia"></div>
