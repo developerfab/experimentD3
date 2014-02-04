@@ -115,49 +115,27 @@
 	var circle_aux, cx_aux, cy_aux ;
 	//redimension de la ventana
 	$(window).resize(function() {
-  		
-		//nuevo_ancho = window.innerWidth;
-		//nuevo_alto = window.innerHeight;
+
+  		dimension();
 		var lienzo_aux = $('.lienzo');
-		nuevo_ancho = lienzo_aux.attr('width');
-		nuevo_alto = lienzo_aux.attr('height');
+		nuevo_ancho = window.innerWidth;		
+		nuevo_alto = window.innerHeight;
 		porcentaje_cambio_ancho = (nuevo_ancho) / ancho_actual;
 		porcentaje_cambio_alto = (nuevo_alto) / alto_actual;
 		conjunto_circle = $('circle').select();
-		console.log('-------------------------');
+		
 		for(var i = 0; i<conjunto_circle.length;i++){
-			console.log('----------- ',i,' --------------');
+			
 			circle_aux = $(conjunto_circle[i]);
 			radio_actual = circle_aux.attr('r');
-			circle_aux.attr('r',radio_actual*porcentaje_cambio_ancho);
-			//if(nuevo_ancho<ancho_actual){
-			cx_aux = circle_aux.attr('cx');
-			console.log('cx: ',cx_aux);
-			cx_aux = cx_aux*nuevo_ancho/ancho_actual;
-			cy_aux = circle_aux.attr('cy');
-			console.log('cy: ', cy_aux);
-			cy_aux = cy_aux*nuevo_alto/alto_actual;
-			
-			//cx_aux = cx_aux*(1 - porcentaje_cambio_ancho);
-			//cy_aux =(circle_aux.attr('cy')*(1 - porcentaje_cambio_alto));
-			circle_aux.attr('cx',cx_aux);
-			console.log('cx_aux: ',cx_aux);
-			//if(cy_aux!=0){
+			circle_aux.attr('r',radio_actual*porcentaje_cambio_ancho);			
+			cx_aux = circle_aux.attr('cx');			
+			cx_aux = cx_aux*porcentaje_cambio_ancho;
+			cy_aux = circle_aux.attr('cy');			
+			cy_aux = cy_aux*porcentaje_cambio_alto;
+			circle_aux.attr('cx',cx_aux);			
 			circle_aux.attr('cy',cy_aux);
-			console.log('cy_aux: ',cy_aux);
-			//}
-			/*}
-            else{
-			cx_aux = circle_aux.attr('cx');
-			cx_aux = cx_aux*(1 + porcentaje_cambio_ancho );
-			cy_aux =(circle_aux.attr('cy')*(1 + porcentaje_cambio_alto));
-			circle_aux.attr('cx',cx_aux);
-			if(cy_aux!=0){
-			circle_aux.attr('cy',cy_aux);
-			}
-            */
 		}
-		
 		ancho_actual = nuevo_ancho;
 		alto_actual = nuevo_alto;
 	});

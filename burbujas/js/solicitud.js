@@ -7,7 +7,7 @@ var margin , width , height ;
 */
 function dimension(){
 	//se limpia el lienzo:
-	$('.lienzo').empty();
+	//$('.lienzo').empty();
 	margin = {top: 19.5, right: 19.5, bottom: 19.5, left: 39.5},
     width = (window.innerWidth*0.8)- margin.right,
     height = (window.innerHeight*0.7) - margin.top - margin.bottom;
